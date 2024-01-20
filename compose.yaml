@@ -1,0 +1,12 @@
+services:
+  palworld_server:
+    image: cm2network/steamcmd
+    ports:
+      - 8211:8211
+      - 8211:8211/udp
+      - 25575:25575
+      - 25575:25575/udp
+    volumes:
+      - ./server:/home/steam/PalWorld/
+    command: ["bash", "-c", "./steamcmd.sh +force_install_dir /home/steam/PalWorld +login anonymous +app_update 2394010 validate +quit; /home/steam/PalWorld/PalServer.sh -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDS"]
+    restart: always
